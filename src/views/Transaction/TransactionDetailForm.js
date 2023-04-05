@@ -1,67 +1,59 @@
 const TransactionDetailForm = (props) => {
-
     const {
-         values,
-         onHideModal,
-        } = props;
-  
-  
-      return(
-          <form className="reg-form">
-          <div className="reg-control">
+        values,
+        onHideModal,
+      } = props;
+
+
+    return(
+      <form className="transaction--details">
+        <div className="container">
+          <div className="field__control">
             <label htmlFor='transactionCode'>Transaction Code</label>
             <input 
-             value={values.transactionCode}
-            //  onChange={onInputChange}
-             name="transactionCode" 
-             disabled 
-           /> 
+              value={values.transactionCode}
+              name="transactionCode" 
+              disabled 
+            /> 
           </div>
-          <div className="reg-control">
+          <div className="field__control">
             <label htmlFor='productCode'>Product Code</label>
             <input 
-             value={values.productCode}
-            //  onChange={onInputChange}
-             name="productCode" 
-             disabled 
-           /> 
+              value={values.productCode}
+              name="productCode" 
+              disabled 
+            /> 
           </div>
-          <div className="reg-control">
+          <div className="field__control">
             <label htmlFor='productName'>Product Name</label>
             <input 
-             value={values.productName}
-            //  onChange={onInputChange}
-             name="productName" 
-             disabled 
-           /> 
+              value={values.productName}
+              name="productName" 
+              disabled 
+            /> 
           </div>  
-          <div className="reg-control">
+          <div className="field__control">
             <label htmlFor='quantity'>Quantity</label>
             <input 
-             value={values.quantity}
-            //  onChange={onInputChange}
-             name="quantity" 
-             disabled 
-           /> 
+              value={values.quantity}
+              name="quantity" 
+              disabled 
+            /> 
           </div>
-          <div className="reg-control">
+          <div className="field__control">
             <label htmlFor='price'>Price</label>
             <input 
-             value={values.price}
-            //  onChange={onInputChange}
-             name="price" 
-             disabled 
-           /> 
+              value={values.price}
+              name="price" 
+              disabled 
+            /> 
           </div>
-          <div className="reg-actions">
-            <button type='button' className='cancel-btn' onClick={onHideModal}>Close</button> {" "}
-            {/* <button className='btn-submit'>Submit</button> */}
+          <div className="field__actions">
+            <button className='btn-cancel' onClick={onHideModal}>Close</button> {" "}
           </div>
-        </form>
-   
-   
-       
-      )
+        </div>
+      </form> 
+   )
   }
   
   export default TransactionDetailForm;

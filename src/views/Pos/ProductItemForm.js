@@ -3,33 +3,31 @@ import { useRef, useState } from 'react';
 import Input from './ProductItem-input';
 
 const ProductItemForm = (props) => {
-  const [quantityIsValid, setQuantityIsValid] = useState(true);
-  const quantityInputRef = useRef();
+    const [quantityIsValid, setQuantityIsValid] = useState(true);
+    const quantityInputRef = useRef();
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+    const submitHandler = (event) => {
+      event.preventDefault();
 
-    const enteredQuantity = quantityInputRef.current.value;
-    const enteredQuantityNumber = +enteredQuantity;
+      const enteredQuantity = quantityInputRef.current.value;
+      const enteredQuantityNumber = +enteredQuantity;
 
-    if (
-      enteredQuantity.trim().length === 0 ||
-      enteredQuantityNumber < 1 ||
-      enteredQuantityNumber > 5
-    ) {
-      setQuantityIsValid(false);
-      return;
-    }
+      if(
+        enteredQuantity.trim().length === 0 ||
+        enteredQuantityNumber < 1 ||
+        enteredQuantityNumber > 5
+      ) {
+        setQuantityIsValid(false);
+        return;
+      }
+        props.onAddToCart(enteredQuantityNumber);
+    };
 
-    props.onAddToCart(enteredQuantityNumber);
-
-  };
-
-  return (
-    <form className="pos-product__item--form" onSubmit={submitHandler}>
+    return (
+    <form className="product--quantity" onSubmit={submitHandler}>
       <Input
         ref={quantityInputRef}
-        label='Quantity'
+        label='Quantity:'
         input={{
           id: 'quantity',
           type: 'number',
@@ -42,7 +40,7 @@ const ProductItemForm = (props) => {
       <button>+ Add</button>
       {!quantityIsValid && <p>Please enter a valid quantity (1-5).</p>}
     </form>
-  );
+    );
 };
 
 export default ProductItemForm;

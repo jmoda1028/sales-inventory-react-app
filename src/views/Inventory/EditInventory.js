@@ -15,13 +15,8 @@ const EditInventory = () => {
     const isModalVisible = useSelector((state) => state.modal.isShown);
 
     const initialValues = {
-        // productName: "",
-        // description: "",
         quantity: "",
         price: "",
-        // date_stock_in: "",
-        // category: "",
-        // supplier: ""
     };
 
     const [values, setValues] = useState(initialValues);
@@ -29,7 +24,7 @@ const EditInventory = () => {
     const hideHandler = () => {
         dispatch(modalActions.setModal(false));
         navigate('/inventory');
-      };
+    };
 
     const getInventory = inventoryId => {
         axios.get(`products/${inventoryId}`)
@@ -44,7 +39,7 @@ const EditInventory = () => {
                 console.log(e);
             });
     };
-    
+
     useEffect(() => {
         if(params && params.id)
             getInventory(params.id);
@@ -54,13 +49,13 @@ const EditInventory = () => {
     const inputHandlerChange = (e) => {
         const { name, value } = e.target;
         setValues({
-          ...values,
-          [name]: value,
+            ...values,
+            [name]: value,
         });
     };
 
     const handleUpdate = (inventoryId) => {
-        axios.put(`products/${inventoryId}/`, {
+        axios.patch(`products/${inventoryId}/`, {
             id: inventoryId,
             qty_on_hand: values.quantity,
             price: values.price,
@@ -78,27 +73,25 @@ const EditInventory = () => {
         e.preventDefault();
         if(params.id) {
             handleUpdate(params.id);
-
         }
         hideHandler();
         navigate('/inventory');
     }
 
     return(
-          <>
-            {isModalVisible &&
-                <Modal>
-                    <EditInventoryForm 
+        <>
+        {isModalVisible &&
+            <Modal>
+                <EditInventoryForm 
                     onSubmit= {handleSubmit}
                     onHideModal={hideHandler}
                     onInputChange={inputHandlerChange}
                     values={values}
-                    />
-                </Modal>
-            }       
-          </>
+                />
+            </Modal>
+        }       
+        </>
     )
-
 }
 
 export default EditInventory;

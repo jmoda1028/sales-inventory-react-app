@@ -58,7 +58,7 @@ const EditSupplier = () => {
     };
 
     const handleUpdate = (supplierId) => {
-        axios.put(`suppliers/${supplierId}/`, {
+        axios.patch(`suppliers/${supplierId}/`, {
             id: supplierId,
             company_name: values.companyName,
             address: values.address,
@@ -84,20 +84,19 @@ const EditSupplier = () => {
     }
 
     return(
-          <>
-            {isModalVisible &&
-                <Modal>
-                    <EditSupplierForm 
+        <>
+        {isModalVisible &&
+            <Modal>
+                <EditSupplierForm 
                     onSubmit= {handleSubmit}
                     onHideModal={hideHandler}
                     onInputChange={inputHandlerChange}
                     values={values}
-                    />
-                </Modal>
-            }       
-          </>
+                />
+            </Modal>
+        }       
+        </>
     )
-
 }
 
 export default EditSupplier;

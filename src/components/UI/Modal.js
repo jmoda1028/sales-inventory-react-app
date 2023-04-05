@@ -2,29 +2,29 @@ import ReactDOM from 'react-dom';
 
 
 const Backdrop = (props) => {
-    return <div className='backdrop' onClick={props.onClose}/>;
-  };
+  return <div className='backdrop' onClick={props.onClose}/>;
+};
 
 const ModalOverlay = (props) => {
-return (
+  return (
     <div className='modal'>
-    <div className='modal-content'>{props.children}</div>
+      <div className='modal-content'>{props.children}</div>
     </div>
-    );
+  );
 };
 
 const portalElement = document.getElementById('overlays');
 
 const Modal = (props) => {
-    return (
-      <>
-        {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
-        {ReactDOM.createPortal(
-          <ModalOverlay>{props.children}</ModalOverlay>,
-          portalElement
-        )}
-      </>
-    );
-  };
+  return (
+    <>
+      {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
+      {ReactDOM.createPortal(
+        <ModalOverlay>{props.children}</ModalOverlay>,
+        portalElement
+      )}
+    </>
+  );
+};
   
-  export default Modal;
+export default Modal;

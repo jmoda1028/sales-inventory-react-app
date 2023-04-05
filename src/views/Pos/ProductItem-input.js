@@ -1,8 +1,9 @@
 import React from 'react';
 
+
 const Input = React.forwardRef((props, ref) => {
   return (
-    <div className="product-item__input">
+    <div className="item__input">
       <label htmlFor={props.input.id}>{props.label}</label>
       <input ref={ref} {...props.input} />
     </div>

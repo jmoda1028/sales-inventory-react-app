@@ -1,47 +1,45 @@
-// import Card from '../../components/UI/Card'
-// import LoadingSpinner from '../../components/UI/LoadingSpinner'
-// import { Link } from "react-router-dom";
+import exitBtn from '../../assets/images/exit.png';
+
 
 const ForgotPasswordForm = (props) => {
+    const {
+           notify,
+           values,
+           onInputHandler,
+           onSubmitHandler,
+           closeMessage
+          } = props;
 
-  const {notify,values,onInputHandler,onSubmitHandler} = props;
+    let info;
 
-  let info;
-
-  if (notify.show) {
-    info = <div>
-        {notify.message}
-    </div>
-}
+    if (notify.show) {
+      info = <div className="success--message">
+                <p>{notify.message}</p>
+                <div className='exit-btn'>
+                  <img src={exitBtn} alt="exit" onClick={closeMessage}/>
+                </div>
+             </div>
+    }
 
     return(
-      <section className='auth'>
-        {info}
-      <h1>Forgot Password</h1>
-
-      
-      <form onSubmit={onSubmitHandler}>
-
-      {/* {loading && (
-            <div className="loading">
-              <LoadingSpinner />
-            </div>
-          )} */}
-
-      <div className="auth-control">
-            <label htmlFor='email'>Email</label>
-            <input 
-             value={values.email}
-             onChange={onInputHandler}
-             name="email"
-             type="email" 
-           /> 
+      <section className='forgot--password'>
+        {info} 
+        <h1>Forgot Password</h1>
+        <form onSubmit={onSubmitHandler}>
+          <div className="forgot--password__control">
+              <label htmlFor='email'>Email</label>
+              <input 
+              value={values.email}
+              onChange={onInputHandler}
+              name="email"
+              type="email" 
+              /> 
           </div>
-          <div className="auth-actions">
+          <div className="forgot--password__action">
             <button className='btn-submit' type="submit">Submit</button>
           </div>
-      </form>
-    </section>
+        </form>
+      </section>
     )
 }
 

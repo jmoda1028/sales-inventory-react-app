@@ -27,7 +27,7 @@ const TransactionDetail = () => {
     const hideHandler = () => {
         dispatch(modalActions.setModal(false));
         navigate('/transaction');
-      };
+    };
 
     const getTransaction= transactionId => {
         axios.get(`get_transaction_item_detail/?transaction_id=${transactionId}`)
@@ -45,34 +45,31 @@ const TransactionDetail = () => {
 
                     return transactItems;
                 })
-              
+                
             })
             .catch(e => {
                 console.log(e);
             });
     };
-    
+
     useEffect(() => {
         if(params && params.id)
         getTransaction(params.id);
             dispatch(modalActions.setModal(true));
     }, [dispatch, params])
 
-    
-
     return(
-          <>
-            {isModalVisible &&
-                <Modal>
-                    <TransactionDetailForm 
+        <>
+        {isModalVisible &&
+            <Modal>
+                <TransactionDetailForm 
                     onHideModal={hideHandler}
                     values={values}
-                    />
-                </Modal>
-            }       
-          </>
+                />
+            </Modal>
+        }       
+        </>
     )
-
 }
 
 export default TransactionDetail;

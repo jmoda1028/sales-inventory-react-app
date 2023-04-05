@@ -1,0 +1,73 @@
+@import 'share/fonts';
+@import 'share/colors';
+@import 'share/modal';
+@import 'share/ui-card';
+@import 'share/noDataFound';
+@import 'share/content-table';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #fff;
+    background: #e7f8f8;
+}
+
+.loading__spinner{
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%); 
+}
+
+.page-not__found{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    color: $blackColor;
+}
+
+.spinner {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+
+    &::after{
+        content: ' ';
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid $primaryBgColor;
+        border-color: $primaryBgColor transparent $primaryBgColor transparent;
+        animation: spinner 1.2s linear infinite;
+    }
+}
+    
+@import 'share/main';
+@import 'vendor/auth';
+@import 'vendor/cart';
+@import 'vendor/navigation';
+
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}

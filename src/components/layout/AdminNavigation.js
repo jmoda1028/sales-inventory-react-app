@@ -1,96 +1,36 @@
-// import React, {useState, useCallback, useEffect} from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-// import CartButton from '../../views/Pos/Cart/CartButton';
 import { logout } from '../../store/authSlice';
-// import axios from '../../util/api'
-// import AuthHeader from '../../util/AuthHeader';
 import LoadingSpinner from '../UI/LoadingSpinner';
 
 
 const AdminNavigation = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  // const [cookie, setCookie, removeCookie] = useCookies(['refresh_token']);
+    const logoutHandler = async () => {
+      dispatch(logout());
+      localStorage.clear();
+      navigate('/login');
+    }  
 
-  // const [isLoggedOut, setIsLoggedOut] = useState(false);
+    const isLoading = useSelector((state) => state.auth.loading);
 
-  const navigate = useNavigate();
+    if(isLoading){
+      return(
+        <div className="loading__spinner">
+          <LoadingSpinner />
+        </div>
+      )
+    }
 
-  // const location = useLocation();
-
-  const dispatch = useDispatch();
-
-  // const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
-
-  // const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-  const logoutHandler = async () => {
-          dispatch(logout());
-
-          localStorage.clear();
-    
-           navigate('/login');
-
- }  
-
-  // const logout = async () => {
-  //   await axios.post('logout/');
-
-    // dispatch(authActions.setAuth(false));
-
-   
-    // localStorage.removeItem("token");
-    // localStorage.clear();
-    
-    // navigate('/login');
-    // removeCookie('refresh_token');
-// }
-
-// const token = localStorage.getItem('token');
-
-const isLoading = useSelector((state) => state.auth.loading);
-
-if(isLoading){
-  return(
-    <div className="loading">
-              <LoadingSpinner />
-            </div>
-  )
-}
-
-// if(!token){
-//   return <Navigate to="/login" state={{ from: location}} replace/>
-// }
-
-
-  // console.log('pathname', location.pathname);
-
-  // const [isPosActive, setIsPosActive] = useState(false)
-
-  // const [currentPath, setCurrentPath] = useState('');
-
-
-  // const {pathname} = location;
-  
-// const token = localStorage.getItem('token');
-
-
-// if(isLoggedOut){
-//   return <Navigate to="/login" state={{ from: location}} replace/>
-// }
-
-// const firstName = localStorage.getItem("firstName");
-// const lastName = localStorage.getItem("lastName");
-
-// const role = localStorage.getItem("role");
-
-  return (
-    <header className='main-nav--header'>
-      <div className='main-nav--logo'>Sales Inventory</div>
-      <nav className='main-nav'>
-        <ul>
-    
-        <li>
+    return (
+      <nav className='admin-main--nav'>
+        <div className='nav-brand'>
+          <h3>Sales Inventory</h3>
+        </div>
+        <ul className='mid-nav__list'>
+          <li>
             <NavLink to='/employee' activeclassname='active'>
               Employee
             </NavLink>
@@ -120,36 +60,21 @@ if(isLoading){
               Profile
             </NavLink>
           </li>
-         
           <li>
             <NavLink to='/dashboard' activeclassname='active' >
               Dashboard
             </NavLink>
           </li>
-
-          {/* <li>
-            
-          </li> */}
         </ul>
-     
-      </nav>
-      {/* <div className='main-nav--cart__button'>
-      <ul>
-       
-            </ul>
-            </div> */}
-      <div className='right-main--nav'>
-      <ul>
-        <li><Link  onClick={logoutHandler}>
+        <ul className='right-nav__list'>
+          <li>
+            <Link  onClick={logoutHandler}>
               Logout
             </Link>
-            </li>
-            {/* <li>{`${firstName} ${lastName}`}</li> */}
-            </ul>
-            </div>
-    
-    </header>
-  );
+          </li>
+        </ul>
+      </nav>
+    );
 };
 
 export default AdminNavigation;

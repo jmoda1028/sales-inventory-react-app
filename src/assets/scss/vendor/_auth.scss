@@ -1,0 +1,231 @@
+.forgot--password{
+    margin-top: 68px;
+    background: $primaryBgColor;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
+    .success--message{
+        background: #28a745;
+        max-width: 376px;
+        width: 100%;
+        color: $whiteColor;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        // position: relative;
+
+        p{
+            text-align: justify;
+            padding: 5px 10px;
+        }
+
+        .exit-btn{
+            padding: 7px 10px;
+            cursor: pointer;
+
+            img{
+                width: 15px;
+                height: 15px;
+            }
+        }
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        margin: 28px 56px;
+    }
+
+    .forgot--password__control{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 8px;
+
+        label{
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        input{
+            background: $inputBgColor;
+            outline: none;
+            border: 1px solid $whiteColor;
+            border-radius: 4px;
+            padding: 4px;
+            width: 100%;
+        }
+    }
+
+    .forgot--password__action{
+        width: 100%;
+        margin-top: 22px;
+
+        .btn-submit{
+            width: 100%;
+            cursor: pointer;
+            padding: 8px 40px;
+            border: none;
+            background: $btnSubmitBgColor;
+            color: $whiteColor;
+            border-radius: 4px;
+
+            &:hover{
+                background: $btnSubmitHoverBgColor;
+                color: $btnSubmitHoverColor;
+            }
+        }
+    }
+}
+
+.login{
+    background: $primaryBgColor;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    color: $whiteColor;
+    
+
+    .container{
+        padding: 18px;
+
+        .error--message{
+            max-width: 320px;
+            width: 100%;
+            background: $errorMessageBGColor;
+            border-radius: 4px;
+            margin: 10px 0;
+
+            p{
+                text-align: center;
+                color: $blackColor;
+                padding: 10px 0
+            }
+        }
+        
+        h1{
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .login__control{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-bottom: 8px;
+            width: 320px;
+
+            label{
+                margin-bottom: 8px;
+                font-size: 16px;
+            }
+
+            input{
+                background: $inputBgColor;
+                outline: none;
+                border: 1px solid $whiteColor;
+                border-radius: 4px;
+                padding: 4px;
+                width: 100%;
+            }
+        }
+
+        .login-btn--action{
+            margin-top: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 24px;
+            max-width: 320px;
+
+            .btn-submit{
+                width: 100%;
+                cursor: pointer;
+                padding: 8px 40px;
+                border: none;
+                background: $btnSubmitBgColor;
+                color: $whiteColor;
+                border-radius: 4px;
+
+                &:hover{
+                    background: $btnSubmitHoverBgColor;
+                    color: $btnSubmitHoverColor;
+                }
+            }
+
+            a{
+                color: $anchorColor;
+                text-decoration: none;
+
+                &:hover{
+                    color: $anchorHoverColor;
+                }
+            }
+        }
+    }
+}
+
+.reset--password{
+    margin-top: 68px;
+    background: $primaryBgColor;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
+    h1{
+        text-align: center;
+        font-size: 32px;
+        margin: 28px 56px;
+    }
+
+    .control{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 8px;
+
+        label{
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        input{
+            background: $inputBgColor;
+            outline: none;
+            border: 1px solid $whiteColor;
+            border-radius: 4px;
+            padding: 4px;
+            width: 100%;
+        }
+    }
+
+    .action{
+        width: 100%;
+        margin-top: 22px;
+
+        .btn-submit{
+            width: 100%;
+            cursor: pointer;
+            padding: 8px 40px;
+            border: none;
+            background: $btnSubmitBgColor;
+            color: $whiteColor;
+            border-radius: 4px;
+
+            &:hover{
+                background: $btnSubmitHoverBgColor;
+                color: $btnSubmitHoverColor;
+            }
+        }
+    }
+
+}

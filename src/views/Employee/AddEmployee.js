@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-// import { Navigate } from "react-router-dom";
 import {register} from '../../store/authSlice';
 import EmployeeForm from './EmployeeForm';
 import Modal from '../../components/UI/Modal'
 
-const AddEmployee = (props) => {
 
+const AddEmployee = (props) => {
     const dispatch = useDispatch();
 
     const initialValues = {
@@ -23,40 +22,38 @@ const AddEmployee = (props) => {
     const inputHandlerChange = (e) => {
         const { name, value } = e.target;
         setValues({
-          ...values,
-          [name]: value,
+            ...values,
+            [name]: value,
         });
-      };
+    };
 
     const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(register({
-        first_name: values.firstName,
-        last_name: values.lastName,
-        email: values.email,
-        password: values.password,
-        password_confirm: values.passwordConfirm,
-        role: 1,
-    }));
-    
-    props.hideHandler();
-    window.location.reload();
-};
+        e.preventDefault();
+        dispatch(register({
+            first_name: values.firstName,
+            last_name: values.lastName,
+            email: values.email,
+            password: values.password,
+            password_confirm: values.passwordConfirm,
+            role: 1,
+        }));
+        
+        props.hideHandler();
+        window.location.reload();   
+    };
 
-return(
-    <Modal onClose={props.onClose}>
-        <EmployeeForm 
-            onInputHandler={inputHandlerChange}
-            onSubmitHandler={submitHandler}
-            values={values}
-            isLoading={loading}
-            error={error}
-            onClose={props.hideHandler}
-        />
-    </Modal>
-);
-
-
+    return(
+        <Modal onClose={props.onClose}>
+            <EmployeeForm 
+                onInputHandler={inputHandlerChange}
+                onSubmitHandler={submitHandler}
+                values={values}
+                isLoading={loading}
+                error={error}
+                onClose={props.hideHandler}
+            />
+        </Modal>
+    );
 }
 
 export default AddEmployee;

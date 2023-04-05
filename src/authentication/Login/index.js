@@ -3,189 +3,97 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation} from "react-router-dom";
 import LoginForm from './LoginForm';
 import {login} from '../../store/authSlice'
-// import {authActions} from '../../store/authSlice'
 import LoadingSpinner from '../../components/UI/LoadingSpinner'
-// import axios from '../../util/api';
 import {messageActions} from '../../store/messageSlice';
 
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const location = useLocation();
 
-  const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  
-  
+    const isLoading = useSelector((state) => state.auth.loading);
+    const { loading, error } = useSelector((state) => state.auth);
+    const {errorMessage} = useSelector((state) => state.message);
 
-  const location = useLocation();
+    const initialValues = {
+        email: "",
+        password: ""
+    };
 
-  
+    const [values, setValues] = useState(initialValues);
 
-  // const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
-  const isLoading = useSelector((state) => state.auth.loading);
+    const token = localStorage.getItem('token');  // current user logged in token
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-  const initialValues = {
-    email: "",
-    password: ""
-};
+    const inputHandlerChange = (e) => {
+        const { name, value } = e.target;
 
-const [values, setValues] = useState(initialValues);
+        setValues({
+          ...values,
+          [name]: value,
+        });
 
-// const [redirect, setRedirect] = useState(false);
+        e.preventDefault();
+    };
 
-const { loading, error } = useSelector((state) => state.auth);
+    const submitHandler =  (e) => {
+      e.preventDefault();
 
-// const errMessage = useSelector((state) => state.auth.error);
-
-const {errorMessage} = useSelector((state) => state.message);
-
-const token = localStorage.getItem('token');
-const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-const inputHandlerChange = (e) => {
-
-  const { name, value } = e.target;
-  setValues({
-    ...values,
-    [name]: value,
-  });
-
-  e.preventDefault();
-};
-
-
-// console.log(errMessage);
-
-// const clearMessage = useCallback(() => {
-//   if(errorMessage){
-//     dispatch(messageActions.clearMessage());
-//   }
-// },[errorMessage,dispatch])
-
-
-const submitHandler =  (e) => {
-  e.preventDefault();
-        dispatch(login({
+      dispatch(login({
             email: values.email,
             password: values.password,
         },
-        // clearMessage()
-    ))
+      ))
 
-    // if(!errorMessage){
-    //   axios.get(`profile_view/?email=${values.email}`)
-    //   .then(res => {
-    //       //GET USER DETAILS
-    //        const user = res.data;
-           
-    //        console.log(user);
-          
-  
-    //        user.map(user => {
-    //            const role = user.role__name;
-    //            const userId = user.id;
-    //            const firstName = user.first_name;
-    //            const lastName = user.last_name;
-    //            localStorage.setItem('role', role);
-    //            localStorage.setItem('userId', userId);
-    //            localStorage.setItem('firstName', firstName);
-    //            localStorage.setItem('lastName', lastName);
-    //    })
-    //   })
-    //   .catch(error => {
-    //             console.log(error);
-  
-    //               });
-    // }
-     
-   
+    }
 
-    // .unwrap()
-    // .then(() => {
-     
-      // navigate("/");
-      // window.location.reload();   
-      // dispatch(authActions.setAuth(true));
-    
-    // })
-    // .catch(() => {
-    //   return error_message;
-    // }); 
-    // // dispatch(authActions.setAuth(...true));
-    // localStorage.setItem('isLoggedIn', true);
-    // if(token){
-    //   dispatch(authActions.setAuth(true));
-    // }
-    // setRedirect(true);
-}
+    let message;
 
-console.log(errorMessage);
+    if(errorMessage){
+        message =  <div className='error--message'>
+                      <p>{errorMessage}</p>
+                    </div>
+        
+        setTimeout(() => {
+            dispatch(messageActions.clearMessage());
+        }, 3000);
+    }
 
-let message;
+    if(isLoading){
+        return(
+          <div className="loading__spinner">
+            <LoadingSpinner />
+          </div>
+        )
+    }
 
+    const userId = localStorage.getItem('userId');  // current logged user id
+    const role = localStorage.getItem("role");  // current logged user role
 
-if(errorMessage){
-  message =  <div className='error-info'>{errorMessage}</div>  
-}
+    if (isLoggedIn) {
+        if(errorMessage){
+            dispatch(messageActions.clearMessage());
+        }
 
-// const clearForm = () => {
-//   setValues(initialValues);
-// }
-
-// if(error){
-//   clearForm();
-// }
-
-if(isLoading){
-  return(
-    <div className="loading">
-              <LoadingSpinner />
-            </div>
-  )
-}
-
-
-// if(token){
-//   localStorage.setItem('isLoggedIn', true);
-// }
-
-const userId = localStorage.getItem('userId');
-const role = localStorage.getItem("role");
-
-
-
-
-
-console.log(userId);
-console.log(token);
-
-if (isLoggedIn) {
-  if(errorMessage){
-    dispatch(messageActions.clearMessage());
-  }
-
-  if(role === "Cashier"){
-    return <Navigate to="/pos" state={{ from: location}} replace/>
-  } 
-  else if(role === "Admin"){
-    return <Navigate to="/" state={{ from: location}} replace/>
-  }
-  
-  // navigate('/');
-}
-
-
+        if(role === "Cashier"){
+            return <Navigate to="/pos" state={{ from: location}} replace/>
+        } 
+        else if(role === "Admin"){
+            return <Navigate to="/" state={{ from: location}} replace/>
+        }
+    }
 
     return (
-        <div className='centered'>
-          <LoginForm 
-            isLoading={loading}
-            values={values}
-            error={error}
-            onInputHandler={inputHandlerChange}
-            onSubmitHandler={submitHandler}
-            message={message}
-          />
-        </div>
+      <>
+        <LoginForm 
+          isLoading={loading}
+          values={values}
+          error={error}
+          onInputHandler={inputHandlerChange}
+          onSubmitHandler={submitHandler}
+          message={message}
+        />
+      </>
     )
 }
 

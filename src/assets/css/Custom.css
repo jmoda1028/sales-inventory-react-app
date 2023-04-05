@@ -1,0 +1,1436 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Inter:wght@400;700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Outfit:wght@300;400;600&family=Playfair+Display:ital@1&family=Poppins&family=Red+Hat+Display:wght@500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Inter:wght@400;700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Montserrat:wght@300&family=Outfit:wght@300;400;600&family=Playfair+Display:ital@1&family=Poppins&family=Red+Hat+Display:wght@500;700;900&display=swap");
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: absolute;
+  top: 20vh;
+  left: 43%;
+  width: auto;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+}
+.modal .modal-content {
+  padding: 16px;
+}
+
+.ui-card {
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  background-color: #fff;
+}
+
+.no--data__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 96px 0;
+  color: black;
+}
+
+.table--container {
+  max-height: 600px;
+  overflow: auto;
+}
+.table--container::-webkit-scrollbar {
+  display: none;
+}
+.table--container .table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 1em;
+  border-radius: 5px 5px 0 0;
+  height: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.table--container .table thead {
+  position: sticky;
+  top: 0;
+}
+.table--container .table thead tr {
+  background-color: teal;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  position: sticky;
+}
+.table--container .table thead tr th {
+  padding: 12px 28px;
+  font-size: 16px;
+}
+.table--container .table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.table--container .table tbody tr:nth-of-type(even) {
+  background: #f3f3f3;
+}
+.table--container .table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+.table--container .table tbody tr td {
+  color: black;
+  padding: 12px 28px;
+  font-size: 14px;
+}
+.table--container .table tbody tr td button {
+  padding: 6px 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.table--container .table tbody tr td button:nth-of-type(2) {
+  margin-left: 10px;
+}
+.table--container .table tbody tr td .btn-deactivate {
+  background-color: #ff8080;
+  color: #fff;
+}
+.table--container .table tbody tr td .btn-deactivate:hover {
+  background-color: #ffcccc;
+  color: black;
+}
+.table--container .table tbody tr td .btn-activate {
+  background: #00e68a;
+  color: white;
+}
+.table--container .table tbody tr td .btn-activate:hover {
+  color: black;
+  background: #b3ffe0;
+}
+.table--container .table tbody tr td .btn-edit {
+  background: #b3b300;
+  text-decoration: none;
+  padding: 4px 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 12px;
+  color: white;
+}
+.table--container .table tbody tr td .btn-edit:hover {
+  background: #ffff00;
+  color: black;
+}
+.table--container .table tbody tr td .btn-detail {
+  background: #009eb3;
+  text-decoration: none;
+  padding: 4px 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 12px;
+  color: white;
+}
+.table--container .table tbody tr td .btn-detail:hover {
+  background: #99f3ff;
+  color: black;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #fff;
+  background: #e7f8f8;
+}
+
+.loading__spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.page-not__found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.spinner {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.spinner::after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid teal;
+  border-color: teal transparent teal transparent;
+  animation: spinner 1.2s linear infinite;
+}
+
+main {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.forgot--password {
+  margin-top: 68px;
+  background: teal;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.forgot--password .success--message {
+  background: #28a745;
+  max-width: 376px;
+  width: 100%;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.forgot--password .success--message p {
+  text-align: justify;
+  padding: 5px 10px;
+}
+.forgot--password .success--message .exit-btn {
+  padding: 7px 10px;
+  cursor: pointer;
+}
+.forgot--password .success--message .exit-btn img {
+  width: 15px;
+  height: 15px;
+}
+.forgot--password h1 {
+  text-align: center;
+  font-size: 32px;
+  margin: 28px 56px;
+}
+.forgot--password .forgot--password__control {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.forgot--password .forgot--password__control label {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.forgot--password .forgot--password__control input {
+  background: #f0f0f0;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 4px;
+  width: 100%;
+}
+.forgot--password .forgot--password__action {
+  width: 100%;
+  margin-top: 22px;
+}
+.forgot--password .forgot--password__action .btn-submit {
+  width: 100%;
+  cursor: pointer;
+  padding: 8px 40px;
+  border: none;
+  background: #66b2b2;
+  color: #fff;
+  border-radius: 4px;
+}
+.forgot--password .forgot--password__action .btn-submit:hover {
+  background: #b2d8d8;
+  color: #404040;
+}
+
+.login {
+  background: teal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+.login .container {
+  padding: 18px;
+}
+.login .container .error--message {
+  max-width: 320px;
+  width: 100%;
+  background: #ffdddd;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+.login .container .error--message p {
+  text-align: center;
+  color: black;
+  padding: 10px 0;
+}
+.login .container h1 {
+  text-align: center;
+  font-size: 32px;
+}
+.login .container .login__control {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 8px;
+  width: 320px;
+}
+.login .container .login__control label {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.login .container .login__control input {
+  background: #f0f0f0;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 4px;
+  width: 100%;
+}
+.login .container .login-btn--action {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 24px;
+  max-width: 320px;
+}
+.login .container .login-btn--action .btn-submit {
+  width: 100%;
+  cursor: pointer;
+  padding: 8px 40px;
+  border: none;
+  background: #66b2b2;
+  color: #fff;
+  border-radius: 4px;
+}
+.login .container .login-btn--action .btn-submit:hover {
+  background: #b2d8d8;
+  color: #404040;
+}
+.login .container .login-btn--action a {
+  color: #88dfdf;
+  text-decoration: none;
+}
+.login .container .login-btn--action a:hover {
+  color: #e6fcfc;
+}
+
+.reset--password {
+  margin-top: 68px;
+  background: teal;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.reset--password h1 {
+  text-align: center;
+  font-size: 32px;
+  margin: 28px 56px;
+}
+.reset--password .control {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.reset--password .control label {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.reset--password .control input {
+  background: #f0f0f0;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 4px;
+  width: 100%;
+}
+.reset--password .action {
+  width: 100%;
+  margin-top: 22px;
+}
+.reset--password .action .btn-submit {
+  width: 100%;
+  cursor: pointer;
+  padding: 8px 40px;
+  border: none;
+  background: #66b2b2;
+  color: #fff;
+  border-radius: 4px;
+}
+.reset--password .action .btn-submit:hover {
+  background: #b2d8d8;
+  color: #404040;
+}
+
+.cart-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+  background: transparent;
+  cursor: pointer;
+  border: 0.12px solid #88dfdf;
+  color: #88dfdf;
+  padding: 4px 18px;
+}
+.cart-btn span {
+  margin: 0 3px;
+  font-size: 16px;
+}
+.cart-btn:hover {
+  background: #88dfdf;
+  color: #fff;
+}
+.cart-btn .badge {
+  background: #1ad1b9;
+  border-radius: 15px;
+  padding: 0.1rem 1.1rem;
+  color: #1d1d1d;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-size: 24px;
+}
+.cart-total span {
+  margin: 12px 8px;
+}
+.cart-total .total-amount {
+  text-decoration: underline;
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 16px;
+  margin-top: 14px;
+}
+.cart-actions button {
+  cursor: pointer;
+  padding: 10px 28px;
+  border-radius: 20px;
+}
+.cart-actions .cart-button__close {
+  background: transparent;
+  border: 1px solid red;
+}
+.cart-actions .cart-button__close:hover {
+  color: white;
+  background: red;
+}
+.cart-actions .cart-button__order {
+  border: 1px solid teal;
+  background: teal;
+}
+.cart-actions .cart-button__order:hover {
+  background: #88dfdf;
+  color: black;
+}
+
+.cart-items {
+  list-style: none;
+  max-height: 320px;
+  overflow: auto;
+  color: black;
+  margin-bottom: 10px;
+}
+.cart-items .cart-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid teal;
+  padding: 14px;
+  margin: 1rem 0;
+}
+.cart-items .cart-item h2 {
+  margin-bottom: 8px;
+}
+.cart-items .cart-item .cart-item__summary {
+  width: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-items .cart-item .cart-item__summary .cart-item__price {
+  font-weight: bold;
+  color: teal;
+}
+.cart-items .cart-item .cart-item__summary .cart-item__amount {
+  font-weight: bold;
+  border: 1px solid #ccc;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+.cart-items .cart-item .cart-item__actions {
+  display: flex;
+  flex-direction: column;
+}
+.cart-items .cart-item .cart-item__actions button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.cart-items .cart-item .cart-item__actions .btn-plus {
+  background: #5cb85c;
+  border-color: #4cae4c;
+  cursor: pointer;
+}
+.cart-items .cart-item .cart-item__actions .btn-minus {
+  background: #d9534f;
+  border-color: #d43f3a;
+  cursor: pointer;
+}
+
+.checkout-form {
+  margin-top: 12px;
+  height: 5rem;
+  color: black;
+}
+.checkout-form .checkout__customer {
+  display: flex;
+  column-gap: 20px;
+}
+.checkout-form .checkout__customer select {
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  background: transparent;
+  flex: 1;
+  padding: 0 14px;
+  cursor: pointer;
+  font-size: 1em;
+  border: 1px solid teal;
+}
+.checkout-form .checkout__customer select:hover {
+  background: teal;
+  color: #fff;
+}
+.checkout-form .checkout-form__actions {
+  margin-top: 28px;
+  display: flex;
+  column-gap: 20px;
+}
+.checkout-form .checkout-form__actions button {
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 6px 26px;
+}
+.checkout-form .checkout-form__actions .btn--cancel {
+  background: transparent;
+  border: 1px solid red;
+}
+.checkout-form .checkout-form__actions .btn--cancel:hover {
+  color: white;
+  background: red;
+}
+.checkout-form .checkout-form__actions .btn--confirm {
+  border: 1px solid teal;
+  background: teal;
+}
+.checkout-form .checkout-form__actions .btn--confirm:hover {
+  background: #88dfdf;
+  color: black;
+}
+
+.cahier-main--nav,
+.admin-main--nav {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: teal;
+  padding: 10px 20px;
+}
+.cahier-main--nav .nav-brand h3,
+.admin-main--nav .nav-brand h3 {
+  font-size: 24px;
+}
+.cahier-main--nav .mid-nav__list,
+.cahier-main--nav .right-nav__list,
+.admin-main--nav .mid-nav__list,
+.admin-main--nav .right-nav__list {
+  list-style-type: none;
+  display: flex;
+  column-gap: 20px;
+}
+.cahier-main--nav .mid-nav__list li,
+.cahier-main--nav .right-nav__list li,
+.admin-main--nav .mid-nav__list li,
+.admin-main--nav .right-nav__list li {
+  font-size: 20px;
+}
+.cahier-main--nav .mid-nav__list li a,
+.cahier-main--nav .right-nav__list li a,
+.admin-main--nav .mid-nav__list li a,
+.admin-main--nav .right-nav__list li a {
+  text-decoration: none;
+  color: #88dfdf;
+}
+.cahier-main--nav .mid-nav__list li a:hover,
+.cahier-main--nav .right-nav__list li a:hover,
+.admin-main--nav .mid-nav__list li a:hover,
+.admin-main--nav .right-nav__list li a:hover {
+  color: #e6fcfc;
+}
+.cahier-main--nav .mid-nav__list li .active,
+.cahier-main--nav .right-nav__list li .active,
+.admin-main--nav .mid-nav__list li .active,
+.admin-main--nav .right-nav__list li .active {
+  color: #e6fcfc;
+}
+
+.customers {
+  margin: 96px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.customers .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.customers .container .btn-add__customer {
+  background: teal;
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid teal;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -18px;
+}
+.customers .container .btn-add__customer:hover {
+  color: black;
+  background: #88dfdf;
+}
+
+.add-customer--form {
+  display: flex;
+  justify-content: center;
+}
+.add-customer--form .container {
+  max-height: 360px;
+  overflow: auto;
+}
+.add-customer--form .container::-webkit-scrollbar {
+  display: none;
+}
+.add-customer--form .container .field__control {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-bottom: 10px;
+}
+.add-customer--form .container .field__control label {
+  color: black;
+  font-weight: bold;
+}
+.add-customer--form .container .field__control input {
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 16px;
+  width: 17vw;
+}
+.add-customer--form .container .field__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 15px;
+}
+.add-customer--form .container .field__actions button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.add-customer--form .container .field__actions .btn-cancel {
+  background: red;
+  color: #fff;
+}
+.add-customer--form .container .field__actions .btn-cancel:hover {
+  color: black;
+  background: #ffb3b3;
+}
+.add-customer--form .container .field__actions .btn-submit {
+  background: teal;
+  color: #fff;
+}
+.add-customer--form .container .field__actions .btn-submit:hover {
+  color: black;
+  background: #11acac;
+}
+
+.dashboards {
+  margin: 78px 0px auto;
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+.dashboards .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.dashboards .container h1 {
+  font-weight: 700;
+  font-size: 32px;
+}
+.dashboards .container .dashboard__list {
+  background: #fff;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px 30px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: #00cdcd solid 1px;
+  margin-top: 32px;
+}
+.dashboards .container .dashboard__list .dashboard {
+  color: black;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 17px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+}
+.dashboards .container .dashboard__list .dashboard hr {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.employees {
+  margin: 96px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.employees .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.employees .container .btn-add__employee {
+  background: teal;
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid teal;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -18px;
+}
+.employees .container .btn-add__employee:hover {
+  color: black;
+  background: #88dfdf;
+}
+
+.add-employee--form,
+.edit--form {
+  display: flex;
+  justify-content: center;
+}
+.add-employee--form .container,
+.edit--form .container {
+  max-height: 360px;
+  overflow: auto;
+}
+.add-employee--form .container::-webkit-scrollbar,
+.edit--form .container::-webkit-scrollbar {
+  display: none;
+}
+.add-employee--form .container .field__control,
+.edit--form .container .field__control {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-bottom: 10px;
+}
+.add-employee--form .container .field__control label,
+.edit--form .container .field__control label {
+  color: black;
+  font-weight: bold;
+}
+.add-employee--form .container .field__control input,
+.edit--form .container .field__control input {
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 16px;
+  width: 17vw;
+}
+.add-employee--form .container .field__actions,
+.edit--form .container .field__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 15px;
+}
+.add-employee--form .container .field__actions button,
+.edit--form .container .field__actions button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.add-employee--form .container .field__actions .btn-cancel,
+.edit--form .container .field__actions .btn-cancel {
+  background: red;
+  color: #fff;
+}
+.add-employee--form .container .field__actions .btn-cancel:hover,
+.edit--form .container .field__actions .btn-cancel:hover {
+  color: black;
+  background: #ffb3b3;
+}
+.add-employee--form .container .field__actions .btn-submit,
+.edit--form .container .field__actions .btn-submit {
+  background: teal;
+  color: #fff;
+}
+.add-employee--form .container .field__actions .btn-submit:hover,
+.edit--form .container .field__actions .btn-submit:hover {
+  color: black;
+  background: #11acac;
+}
+
+.inventories {
+  margin: 96px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.inventories .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.inventories .container .btn-add__product {
+  background: teal;
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid teal;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -18px;
+}
+.inventories .container .btn-add__product:hover {
+  color: black;
+  background: #88dfdf;
+}
+
+.add-product--form,
+.edit--form,
+.detail--form {
+  display: flex;
+  justify-content: center;
+}
+.add-product--form .container,
+.edit--form .container,
+.detail--form .container {
+  max-height: 360px;
+  overflow: auto;
+}
+.add-product--form .container::-webkit-scrollbar,
+.edit--form .container::-webkit-scrollbar,
+.detail--form .container::-webkit-scrollbar {
+  display: none;
+}
+.add-product--form .container .field__control,
+.edit--form .container .field__control,
+.detail--form .container .field__control {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-bottom: 10px;
+}
+.add-product--form .container .field__control label,
+.edit--form .container .field__control label,
+.detail--form .container .field__control label {
+  color: black;
+  font-weight: bold;
+}
+.add-product--form .container .field__control input,
+.edit--form .container .field__control input,
+.detail--form .container .field__control input {
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 16px;
+  width: 17vw;
+}
+.add-product--form .container .field__control input[type=file],
+.edit--form .container .field__control input[type=file],
+.detail--form .container .field__control input[type=file] {
+  color: black;
+}
+.add-product--form .container .field__control input[type=file]::file-selector-button,
+.edit--form .container .field__control input[type=file]::file-selector-button,
+.detail--form .container .field__control input[type=file]::file-selector-button {
+  border: 1px solid #c1d1d1;
+  cursor: pointer;
+  outline: none;
+  padding: 0.6px 16px;
+  border-radius: 5px;
+  transition: 1s;
+}
+.add-product--form .container .field__control input[type=file]::file-selector-button:hover,
+.edit--form .container .field__control input[type=file]::file-selector-button:hover,
+.detail--form .container .field__control input[type=file]::file-selector-button:hover {
+  background: teal;
+  color: #fff;
+}
+.add-product--form .container .field__control select,
+.edit--form .container .field__control select,
+.detail--form .container .field__control select {
+  appearance: none;
+  outline: none;
+  padding: 6px 16px;
+  color: black;
+  cursor: pointer;
+  border: 1px solid #c1d1d1;
+  font-size: 16px;
+}
+.add-product--form .container .field__control select:hover,
+.edit--form .container .field__control select:hover,
+.detail--form .container .field__control select:hover {
+  background: teal;
+  color: #fff;
+}
+.add-product--form .container .field__actions,
+.edit--form .container .field__actions,
+.detail--form .container .field__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 15px;
+}
+.add-product--form .container .field__actions button,
+.edit--form .container .field__actions button,
+.detail--form .container .field__actions button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.add-product--form .container .field__actions .btn-cancel,
+.edit--form .container .field__actions .btn-cancel,
+.detail--form .container .field__actions .btn-cancel {
+  background: red;
+  color: #fff;
+}
+.add-product--form .container .field__actions .btn-cancel:hover,
+.edit--form .container .field__actions .btn-cancel:hover,
+.detail--form .container .field__actions .btn-cancel:hover {
+  color: black;
+  background: #ffb3b3;
+}
+.add-product--form .container .field__actions .btn-submit,
+.edit--form .container .field__actions .btn-submit,
+.detail--form .container .field__actions .btn-submit {
+  background: teal;
+  color: #fff;
+}
+.add-product--form .container .field__actions .btn-submit:hover,
+.edit--form .container .field__actions .btn-submit:hover,
+.detail--form .container .field__actions .btn-submit:hover {
+  color: black;
+  background: #11acac;
+}
+
+.pos-products {
+  margin: 72px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.pos-products .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.pos-products .container .success__message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background: #5cb85c;
+  width: 48vw;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.pos-products .container .success__message p {
+  justify-self: center;
+  padding: 10px 32px;
+  font-size: 18px;
+}
+.pos-products .container .category-select {
+  display: flex;
+  width: 160px;
+  height: 33px;
+  line-height: 3;
+  margin-top: 10px;
+}
+.pos-products .container .category-select select {
+  appearance: none;
+  outline: 0;
+  background: transparent;
+  flex: 1;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 16px;
+  border: 0.1em solid teal;
+}
+.pos-products .container .category-select select:hover {
+  background: teal;
+  color: #fff;
+}
+.pos-products .container .product__list {
+  width: 47vw;
+  list-style: none;
+  color: black;
+  max-height: 75vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.pos-products .container .product__list .product__item {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ccc;
+}
+.pos-products .container .product__list .product__item h3 {
+  margin: 2px 0;
+  font-size: 18px;
+}
+.pos-products .container .product__list .product__item .description {
+  font-style: italic;
+  margin-bottom: 2px;
+}
+.pos-products .container .product__list .product__item .price {
+  max-width: 160px;
+  width: 100%;
+  border-radius: 30px;
+  padding: 3px 16px;
+  background-color: teal;
+  color: #fff;
+  font-size: 24px;
+}
+.pos-products .container .product__list .product__item .product--quantity .item__input {
+  margin-bottom: 8px;
+}
+.pos-products .container .product__list .product__item .product--quantity .item__input > label {
+  margin-right: 10px;
+}
+.pos-products .container .product__list .product__item .product--quantity button {
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid teal;
+  padding: 6px 27px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 0.65rem;
+}
+.pos-products .container .product__list .product__item .product--quantity button:hover, .pos-products .container .product__list .product__item .product--quantity button:active {
+  background: teal;
+  color: #fff;
+}
+
+.profile {
+  margin: 96px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.profile .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  row-gap: 48px;
+}
+.profile .container .success__message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background: #5cb85c;
+  width: 35vw;
+  border-radius: 5px;
+  margin-bottom: -24px;
+  margin-top: -18px;
+}
+.profile .container .success__message p {
+  justify-self: center;
+  padding: 10px 32px;
+  font-size: 18px;
+}
+.profile .container .btn-change__password {
+  background: teal;
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid teal;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -18px;
+}
+.profile .container .btn-change__password:hover {
+  color: black;
+  background: #88dfdf;
+}
+.profile .container .profile--info {
+  width: 35vw;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid teal;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  color: black;
+}
+.profile .container .profile--info h1 {
+  font-size: 26px;
+  margin: 24px 0;
+}
+.profile .container .profile--info .field__control {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-top: 12px;
+}
+.profile .container .profile--info .field__control label {
+  font-size: 18px;
+}
+.profile .container .profile--info .field__control input {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  border: 1px solid teal;
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 0.5rem;
+  color: #686464;
+}
+.profile .container .profile--info .field__control input[value] {
+  font-size: 17px;
+}
+
+.profile--edit__form {
+  width: 100%;
+}
+.profile--edit__form .field__control {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  row-gap: 2px;
+  color: black;
+}
+.profile--edit__form .field__control:nth-of-type(2) {
+  margin-top: 11px;
+}
+.profile--edit__form .field__control label {
+  font-weight: bold;
+  font-size: 16px;
+}
+.profile--edit__form .field__control input {
+  font: inherit;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  outline: none;
+}
+.profile--edit__form .field__action {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 10px;
+}
+.profile--edit__form .field__action button {
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+.profile--edit__form .field__action .btn-cancel {
+  background: red;
+  color: #fff;
+}
+.profile--edit__form .field__action .btn-cancel:hover {
+  color: black;
+  background: #ffb3b3;
+}
+.profile--edit__form .field__action .btn-submit {
+  background: teal;
+  color: #fff;
+}
+.profile--edit__form .field__action .btn-submit:hover {
+  color: black;
+  background: #11acac;
+}
+
+.supplier {
+  margin: 96px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.supplier .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.supplier .container .btn-add__supplier {
+  background: teal;
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid teal;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -18px;
+}
+.supplier .container .btn-add__supplier:hover {
+  color: black;
+  background: #88dfdf;
+}
+
+.add-supplier--form,
+.edit--form {
+  display: flex;
+  justify-content: center;
+}
+.add-supplier--form .container,
+.edit--form .container {
+  max-height: 360px;
+  overflow: auto;
+}
+.add-supplier--form .container::-webkit-scrollbar,
+.edit--form .container::-webkit-scrollbar {
+  display: none;
+}
+.add-supplier--form .container .field__control,
+.edit--form .container .field__control {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-bottom: 10px;
+}
+.add-supplier--form .container .field__control label,
+.edit--form .container .field__control label {
+  color: black;
+  font-weight: bold;
+}
+.add-supplier--form .container .field__control input,
+.edit--form .container .field__control input {
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 16px;
+  width: 17vw;
+}
+.add-supplier--form .container .field__actions,
+.edit--form .container .field__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 15px;
+}
+.add-supplier--form .container .field__actions button,
+.edit--form .container .field__actions button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.add-supplier--form .container .field__actions .btn-cancel,
+.edit--form .container .field__actions .btn-cancel {
+  background: red;
+  color: #fff;
+}
+.add-supplier--form .container .field__actions .btn-cancel:hover,
+.edit--form .container .field__actions .btn-cancel:hover {
+  color: black;
+  background: #ffb3b3;
+}
+.add-supplier--form .container .field__actions .btn-submit,
+.edit--form .container .field__actions .btn-submit {
+  background: teal;
+  color: #fff;
+}
+.add-supplier--form .container .field__actions .btn-submit:hover,
+.edit--form .container .field__actions .btn-submit:hover {
+  color: black;
+  background: #11acac;
+}
+
+.transaction {
+  margin: 96px 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.transaction .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.transaction--details {
+  display: flex;
+  justify-content: center;
+}
+.transaction--details .container {
+  max-height: 360px;
+  overflow: auto;
+}
+.transaction--details .container::-webkit-scrollbar {
+  display: none;
+}
+.transaction--details .container .field__control {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-bottom: 10px;
+}
+.transaction--details .container .field__control label {
+  color: black;
+  font-weight: bold;
+}
+.transaction--details .container .field__control input {
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 16px;
+  width: 17vw;
+}
+.transaction--details .container .field__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 15px;
+}
+.transaction--details .container .field__actions button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.transaction--details .container .field__actions .btn-cancel {
+  background: red;
+  color: #fff;
+}
+.transaction--details .container .field__actions .btn-cancel:hover {
+  color: black;
+  background: #ffb3b3;
+}
+.transaction--details .container .field__actions .btn-submit {
+  background: teal;
+  color: #fff;
+}
+.transaction--details .container .field__actions .btn-submit:hover {
+  color: black;
+  background: #11acac;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

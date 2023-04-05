@@ -1,21 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import axios from '../util/api';
 
-// export const createTransaction = createAsyncThunk(
-//   "cart/createTransact",
-//   async ({ item }) => {
-//     try{
-//       const res = await axios.post('transactions/', { 
-//         item
-//         });
-
-//         return res.data;
-//     }
-//     catch(error){
-//       console.log(error);
-//     }
-//   }
-// );
 
 const initialState = {
   items: [],
@@ -28,93 +12,76 @@ const initialState = {
 }
 
 const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-       
-        addItemToCart(state, action) {
-          const newItem = action.payload;
-          const updatedTotalAmount =
-                          state.totalAmount + newItem.price * newItem.quantity;
+  name: 'cart',
+  initialState,
+  reducers: {
+    addItemToCart(state, action) {
+      const newItem = action.payload;
+      const updatedTotalAmount =
+                      state.totalAmount + newItem.price * newItem.quantity;
 
-          const updatedTotalQuantity = 
-                          state.totalQuantity + newItem.quantity;
+      const updatedTotalQuantity = 
+                      state.totalQuantity + newItem.quantity;
 
-          const updatedTax = (state.totalAmount / 1.12) * 0.12;         
+      const updatedTax = (state.totalAmount / 1.12) * 0.12;         
 
-          const existingCartItemIndex = state.items.findIndex(
-            (item) => item.id === newItem.id
-          );
-          const existingCartItem = state.items[existingCartItemIndex];
-          let updatedItems;
+      const existingCartItemIndex = state.items.findIndex(
+        (item) => item.id === newItem.id
+      );
 
-          if (existingCartItem) {
-            const updatedItem = {
-              ...existingCartItem,
-              quantity: existingCartItem.quantity + 1,
-            };
-            updatedItems = [...state.items];
-            updatedItems[existingCartItemIndex] = updatedItem;
-          } else {
-            updatedItems = state.items.concat(newItem);
-          }
+      const existingCartItem = state.items[existingCartItemIndex];
+      let updatedItems;
 
-          return {
-            items: updatedItems,
-            totalAmount: updatedTotalAmount,
-            totalQuantity: updatedTotalQuantity,
-            tax: updatedTax,
-          };
-      
-        },
+      if (existingCartItem) {
+        const updatedItem = {
+          ...existingCartItem,
+          quantity: existingCartItem.quantity + 1,
+        };
+        updatedItems = [...state.items];
+        updatedItems[existingCartItemIndex] = updatedItem;
+      } else {
+        updatedItems = state.items.concat(newItem);
+      }
 
-        removeItemFromCart(state, action){
-          const id = action.payload;
-          const existingCartItemIndex = state.items.findIndex(
-            (item) => item.id === id
-          );
-          const existingItem = state.items[existingCartItemIndex];
-          const updatedTotalAmount = state.totalAmount - existingItem.price;
-          let updatedItems;
-          if (existingItem.quantity === 1) {
-            updatedItems = state.items.filter(item => item.id !== id);
-          } else {
-            const updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
-            updatedItems = [...state.items];
-            updatedItems[existingCartItemIndex] = updatedItem;
-          }
-          const updatedTotalQuantity = state.totalQuantity - 1;
-
-          const updatedTax = (state.totalAmount / 1.12) * 0.12;                
-      
-          return {
-            items: updatedItems,
-            totalAmount: updatedTotalAmount,
-            totalQuantity: updatedTotalQuantity,
-            tax: updatedTax,
-          };
-        },
-
-        clearCart() {
-          return initialState;
-        },
+      return {
+        items: updatedItems,
+        totalAmount: updatedTotalAmount,
+        totalQuantity: updatedTotalQuantity,
+        tax: updatedTax,
+      };
     },
-    
-    
-    // extraReducers: {
-    //   [createTransaction.pending]: (state, action) => {
-    //     state.loading = true;
-    //   },
-    //   [createTransaction.fulfilled]: (state, action) => {
-    //     state.loading = false;
-    //     state.post = [action.payload];
-    //   },
-    //   [createTransaction.rejected]: (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   },
-    // },
 
+    removeItemFromCart(state, action){
+      const id = action.payload;
+      const existingCartItemIndex = state.items.findIndex(
+        (item) => item.id === id
+      );
+      const existingItem = state.items[existingCartItemIndex];
+      const updatedTotalAmount = state.totalAmount - existingItem.price;
+      let updatedItems;
+      if (existingItem.quantity === 1) {
+        updatedItems = state.items.filter(item => item.id !== id);
+      } else {
+        const updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
+        updatedItems = [...state.items];
+        updatedItems[existingCartItemIndex] = updatedItem;
+      }
+      const updatedTotalQuantity = state.totalQuantity - 1;
+
+      const updatedTax = (state.totalAmount / 1.12) * 0.12;                
+  
+      return {
+        items: updatedItems,
+        totalAmount: updatedTotalAmount,
+        totalQuantity: updatedTotalQuantity,
+        tax: updatedTax,
+      };
+    },
+
+    clearCart() {
+      return initialState;
+    },
+  },
 });
 
 export const cartActions = cartSlice.actions;
