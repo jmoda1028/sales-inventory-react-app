@@ -35,6 +35,8 @@ const Employee = (props) => {
       setIsemployeeStatusUpdate(!IsemployeeStatusUpdate);
     }
 
+  
+
     const loadData = useCallback(async () => {
       try {
         const res = await axios.get("get_users_role/")
@@ -49,6 +51,7 @@ const Employee = (props) => {
       loadData();
     }, [loadData, IsemployeeStatusUpdate])
 
+
     return (
       <section className='employees'>
         <div className='container'>
@@ -57,7 +60,7 @@ const Employee = (props) => {
           </button>
           {IsShown && <AddEmployee hideHandler={hideHandler} />}
           <br /> <br />
-          { employees.length > 0 ?
+          {employees.length > 0 ?
           <EmployeeList 
             employees={employees}
             onDeactivate={deactivateHandler}

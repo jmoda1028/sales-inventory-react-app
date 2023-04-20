@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation} from "react-router-dom";
 import LoginForm from './LoginForm';
+import Credential from './Credential-Info';
 import {login} from '../../store/authSlice'
 import LoadingSpinner from '../../components/UI/LoadingSpinner'
 import {messageActions} from '../../store/messageSlice';
@@ -93,7 +94,9 @@ const Login = () => {
           onSubmitHandler={submitHandler}
           message={message}
         />
+        <Credential />
       </>
+
     )
 }
 

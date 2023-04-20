@@ -20,7 +20,7 @@ const Dashboard = () => {
         .catch(err => {
           console.log(err);
         })
-      axios.get('total_users/?role=1')
+      axios.get('total_users/?role=2')
         .then(res => {
             const {total_users} = res.data;
             setTotalUsers(total_users);   

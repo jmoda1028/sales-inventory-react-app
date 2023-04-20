@@ -272,6 +272,25 @@ main {
   color: #404040;
 }
 
+.credential {
+  position: relative;
+  top: 45px;
+  margin: 0 auto;
+  background: rgba(255, 192, 203, 0.5);
+  border-radius: 5px;
+  box-shadow: 0px 0px 11px 1px rgba(0, 0, 0, 0.75);
+}
+.credential .container {
+  color: black;
+  padding: 20px;
+}
+.credential .container .line-separate {
+  border-bottom: 1px solid black;
+}
+.credential .container .creds {
+  padding: 10px 0;
+}
+
 .login {
   background: teal;
   position: absolute;
@@ -445,7 +464,8 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  column-gap: 16px;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
   margin-top: 14px;
 }
 .cart-actions button {
@@ -532,10 +552,13 @@ main {
 }
 .checkout-form .checkout__customer {
   display: flex;
-  column-gap: 20px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
 }
 .checkout-form .checkout__customer select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   outline: 0;
   box-shadow: none;
   background: transparent;
@@ -552,7 +575,8 @@ main {
 .checkout-form .checkout-form__actions {
   margin-top: 28px;
   display: flex;
-  column-gap: 20px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
 }
 .checkout-form .checkout-form__actions button {
   cursor: pointer;
@@ -596,7 +620,8 @@ main {
 .admin-main--nav .right-nav__list {
   list-style-type: none;
   display: flex;
-  column-gap: 20px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
 }
 .cahier-main--nav .mid-nav__list li,
 .cahier-main--nav .right-nav__list li,
@@ -686,7 +711,8 @@ main {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  column-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 .add-customer--form .container .field__actions button {
   border: none;
@@ -829,7 +855,8 @@ main {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  column-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 .add-employee--form .container .field__actions button,
 .edit--form .container .field__actions button {
@@ -955,7 +982,9 @@ main {
 .add-product--form .container .field__control select,
 .edit--form .container .field__control select,
 .detail--form .container .field__control select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   outline: none;
   padding: 6px 16px;
   color: black;
@@ -975,7 +1004,8 @@ main {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  column-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 .add-product--form .container .field__actions button,
 .edit--form .container .field__actions button,
@@ -1047,7 +1077,9 @@ main {
   margin-top: 10px;
 }
 .pos-products .container .category-select select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   outline: 0;
   background: transparent;
   flex: 1;
@@ -1224,7 +1256,8 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  column-gap: 10px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
 }
 .profile--edit__form .field__action button {
   font-size: 16px;
@@ -1319,7 +1352,8 @@ main {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  column-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 .add-supplier--form .container .field__actions button,
 .edit--form .container .field__actions button {
@@ -1399,7 +1433,8 @@ main {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  column-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 .transaction--details .container .field__actions button {
   border: none;

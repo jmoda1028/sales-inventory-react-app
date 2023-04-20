@@ -81,6 +81,28 @@
     }
 }
 
+.credential{
+    position: relative;
+    top: 45px;
+    margin: 0 auto;
+    background: rgb(255, 192, 203, 0.50);
+    border-radius: 5px;
+    box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
+
+    .container{
+        color: black;
+        padding: 20px;
+
+        .line-separate{
+            border-bottom: 1px solid black;
+        }
+
+        .creds{
+            padding: 10px 0;
+        }
+    }
+}
+
 .login{
     background: $primaryBgColor;
     position: absolute;

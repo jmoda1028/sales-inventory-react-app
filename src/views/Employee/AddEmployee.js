@@ -35,7 +35,7 @@ const AddEmployee = (props) => {
             email: values.email,
             password: values.password,
             password_confirm: values.passwordConfirm,
-            role: 1,
+            role: 2,
         }));
         
         props.hideHandler();

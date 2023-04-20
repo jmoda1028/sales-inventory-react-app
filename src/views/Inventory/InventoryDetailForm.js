@@ -100,7 +100,8 @@ const InventoryDetailForm = (props) => {
               /> 
             </div>
           </div>
-          <img src={`http://localhost:8000/media/${values.productImage}`} alt="image" style={{ width: '120px', height: '120px'}} />
+          {/* <img src={`http://localhost:8000/media/${values.productImage}`} alt="image" style={{ width: '120px', height: '120px'}} /> */}
+          <img src={`https://web-production-0b2d.up.railway.app/media/${values.productImage}`} alt="image" style={{ width: '120px', height: '120px'}} />
           {/* <img src={`https://sales-and-inventory-api.herokuapp.com/media/${values.productImage}`} alt="product" style={{ width: '120px', height: '120px'}} /> */}
           <div className="field__actions">
             <button className='btn-cancel' onClick={onHideModal}>Close</button> {" "}
